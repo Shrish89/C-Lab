@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+    int mainSum = 0, secondarySum = 0;
+    int upper = 1, lower = 1;
+
+    printf("Enter order of square matrix: ");
+    scanf("%d", &n);
+
+    int a[n][n];
+
+    printf("Enter matrix elements:\n");
+
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    for(i = 0; i < n; i++)
+    {
+        mainSum += a[i][i];
+        secondarySum += a[i][n - 1 - i];
+    }
+
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            if(i > j && a[i][j] != 0)
+            {
+                upper = 0;
+            }
+
+            if(i < j && a[i][j] != 0)
+            {
+                lower = 0;
+            }
+        }
+    }
+
+    printf("Sum of main diagonal = %d\n", mainSum);
+    printf("Sum of secondary diagonal = %d\n", secondarySum);
+
+    if(upper && lower)
+    {
+        printf("Matrix is diagonal.");
+    }
+    else if(upper)
+    {
+        printf("Matrix is upper triangular.");
+    }
+    else if(lower)
+    {
+        printf("Matrix is lower triangular.");
+    }
+    else
+    {
+        printf("Matrix is none of these.");
+    }
+
+    return 0;
+}
